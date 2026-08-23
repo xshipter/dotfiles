@@ -1,0 +1,25 @@
+# Add your identity under a [user] block:
+#   [user]
+#     name  = Your Name
+#     email = you@example.com
+
+[core]
+  pager = delta
+
+[delta]
+  diff-so-fancy = true          # built-in emulation preset — NOT a [delta "..."] feature name
+  side-by-side  = true
+  navigate      = true          # n/N to jump between diff sections
+  line-numbers  = true
+
+[interactive]
+  diffFilter = delta --color-only   # required for `git add -p` — full delta output breaks the hunk editor
+
+[merge]
+  conflictstyle = diff3             # includes the common ancestor block; delta highlights it cleanly
+
+[diff]
+  colorMoved = default              # delta detects moved blocks and de-emphasises them automatically
+[user]
+	email = xshipter@gmail.com
+	name = shipter

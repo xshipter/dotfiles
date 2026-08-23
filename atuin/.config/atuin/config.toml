@@ -1,0 +1,75 @@
+## ~/.config/atuin/config.toml
+## Full reference: https://docs.atuin.sh/cli/configuration/config/
+
+# ── Search ────────────────────────────────────────────────────────────────────
+
+# daemon-fuzzy uses an in-memory index held by the daemon process — no SQLite
+# hit per keystroke. Noticeably faster than plain "fuzzy" on large histories.
+search_mode = "daemon-fuzzy"
+
+# Start every Ctrl-R session with global history. Ctrl-R cycles the filter,
+# and workspaces = true auto-narrows to the current git repo when inside one.
+filter_mode = "global"
+workspaces  = true
+
+# ── UI ───────────────────────────────────────────────────────────────────────
+
+# compact keeps the UI tight; full adds extra decoration that adds no value.
+style = "compact"
+
+# Show the full command in a preview row when it's truncated — essential for
+# long pipelines and docker/kubectl invocations.
+show_preview       = true
+max_preview_height = 4
+
+# Search bar at the top, results below — matches --layout=reverse in fzf.
+# Same spatial layout in both tools means the same muscle memory.
+invert = true
+
+# Strip chrome: you learn ctrl-r (cycle filter), tab (edit), enter (execute)
+# within a day. The tab bar is inconsistent with compact + no-help.
+show_help = false
+show_tabs  = false
+
+# ── Behaviour ────────────────────────────────────────────────────────────────
+
+# One Enter to execute; Tab to edit first. Atuin considers this the correct
+# default for new users and will likely make it universal in a future release.
+enter_accept = true
+
+# Scrub secrets at record time: AWS keys, GitHub PATs, Stripe keys, etc.
+# Enabled by default — listed explicitly so the intent is visible.
+secrets_filter = true
+
+# Don't record failed commands — keeps the history free of typos and misfires.
+# Flip to true if you want a full audit trail of everything you attempted.
+store_failed = false
+
+# Commands starting with a space are never recorded — mirrors HIST_IGNORE_SPACE
+# in .zshrc. Atuin hooks at preexec level, before zsh history options apply,
+# so this needs to be set here independently.
+history_filter = [
+  "^ ",      # leading space
+  "^cd -$",  # previous-dir toggle — noise with no recall value
+]
+
+# No outbound check on every shell start.
+update_check = false
+
+# ── Daemon ───────────────────────────────────────────────────────────────────
+
+# Required for daemon-fuzzy. autostart = true means the daemon starts with the
+# first shell session — no manual systemd unit or separate launch step needed.
+[daemon]
+enabled   = true
+autostart = true
+
+# ── Sync (off by default — opt in if you want cross-machine history) ──────────
+
+auto_sync = false
+
+# To enable sync:
+#   1. atuin register   (new account)
+#      OR atuin login   (existing account)
+#   2. Set auto_sync = true and uncomment sync_frequency below.
+# sync_frequency = "5m"
