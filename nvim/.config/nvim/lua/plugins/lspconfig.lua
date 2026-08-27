@@ -117,24 +117,24 @@ return {
 					end,
 				},
 				-- Correct parameters: 'init_params' contains the raw client handshake, 'config' is the active engine block
-				before_init = function(init_params, config)
-					-- config.root_dir is a pre-parsed string path resolved natively by Neovim
-					if config and config.root_dir then
-						local manage_py = config.root_dir .. "/manage.py"
-
-						-- If manage.py is explicitly readable, switch diagnostic modes
-						if vim.fn.filereadable(manage_py) == 1 then
-							config.settings.python.analysis.diagnosticMode = "workspace"
-						end
-					end
-				end,
+				-- before_init = function(init_params, config)
+				-- 	-- config.root_dir is a pre-parsed string path resolved natively by Neovim
+				-- 	if config and config.root_dir then
+				-- 		local manage_py = config.root_dir .. "/manage.py"
+				--
+				-- 		-- If manage.py is explicitly readable, switch diagnostic modes
+				-- 		if vim.fn.filereadable(manage_py) == 1 then
+				-- 			config.settings.python.analysis.diagnosticMode = "workspace"
+				-- 		end
+				-- 	end
+				-- end,
 				settings = {
 					pyright = {
 						disableOrganizeImports = true,
 					},
 					python = {
 						analysis = {
-							typeCheckingMode = "standard",
+							typeCheckingMode = "basic",
 							autoSearchPaths = true,
 							useLibraryCodeForTypes = true,
 							-- Only diagnose open files (fallback default for regular files)
@@ -159,6 +159,7 @@ return {
 			-- vim.lsp.enable() looks for lsp/<name>.lua on the runtimepath.
 			-- nvim-lspconfig provides those files; hence the dependency above.
 			vim.lsp.enable({
+                "ruff",
 				"lua_ls",
 				"ts_ls",
 				"pyright",

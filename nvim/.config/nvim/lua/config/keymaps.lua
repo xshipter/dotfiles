@@ -24,9 +24,10 @@ vim.keymap.set("n", "<leader>n", "<cmd>nohl<cr>", opts)
 
 -- Buffer navigation
 vim.keymap.set("n", "<leader><leader>", "<cmd>b#<cr>", opts)
-vim.keymap.set("n", "gb", ":ls<CR>:b<Space>", { noremap = true, silent = false })
-vim.keymap.set("n", "gp", "<cmd>bp<cr>", opts)
-vim.keymap.set("n", "gn", "<cmd>bn<cr>", opts)
+vim.keymap.set("n", "bb", ":ls<CR>:b<Space>", { noremap = true, silent = false })-- Also setup in fzf <fb>
+vim.keymap.set("n", "bp", "<cmd>bp<cr>", opts)
+vim.keymap.set("n", "bn", "<cmd>bn<cr>", opts)
+vim.keymap.set("n", "bd", "<cmd>bd<cr>", opts)
 
 -- Window navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h", opts)

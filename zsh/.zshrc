@@ -87,7 +87,6 @@ alias tldr='tldr --color always'
 # which breaks third-party scripts and plugin internals that call find directly.
 
 alias vim='nvim'
-alias v='nvim .'
 alias cls='clear'
 
 alias gst='git status'
@@ -131,6 +130,15 @@ cl() {
     cd "$@" && ls
 }
 
+# Open neovim with or without a filename
+v() {
+    if [ $# -eq 0 ]; then
+        nvim -c 'FzfLua files'
+    else
+        nvim "$@"
+    fi
+}
+
 # ── Tool Initialization ──────────────────────────────────────────────────────────
 # Order matters: each tool may rebind keys; later bindings win.
 eval "$(starship init zsh)"
@@ -146,3 +154,4 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 [[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
+
