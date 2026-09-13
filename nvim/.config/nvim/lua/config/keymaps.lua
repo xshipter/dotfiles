@@ -41,6 +41,9 @@ vim.keymap.set("n", "<C-Down>", "<cmd>resize +2<cr>", opts)
 vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", opts)
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", opts)
 
+-- Diagnostics
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show line diagnostic details" })
+
 -- Lazygit(Need to be installed os level)
 vim.keymap.set("n", "<leader>gg", function()
 	vim.cmd("tabnew")

@@ -66,6 +66,19 @@ return {
 				},
 			})
 
+			vim.lsp.config("tailwindcss", { })
+
+            vim.lsp.config('cssls', {
+                settings = {
+                    css = {
+                        validate = true,
+                        lint = {
+                            -- Tell cssls to ignore Tailwind rules like @apply, @theme, @tailwind, etc.
+                            unknownAtRules = "ignore"
+                        }
+                    }
+                }
+            })
 			-- Emmet support for html/django
 			vim.lsp.config("emmet_language_server", {
 				filetypes = {
@@ -135,6 +148,7 @@ return {
 					python = {
 						analysis = {
 							typeCheckingMode = "basic",
+                            autoImportCompletions = true,
 							autoSearchPaths = true,
 							useLibraryCodeForTypes = true,
 							-- Only diagnose open files (fallback default for regular files)
@@ -169,6 +183,7 @@ return {
 				"cssls",
 				"clangd",
 				"emmet_language_server",
+                "tailwindcss",
 			})
 
 			-- ── 4. LspAttach — buffer-local keymaps & features ────
@@ -195,7 +210,7 @@ return {
 					map("n", "gd", vim.lsp.buf.definition, "Go to definition")
 					map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
 					map("n", "K", vim.lsp.buf.hover, "Hover documentation")
-
+                    map('n', "<leader>ca", vim.lsp.buf.code_action, "LSP Code Action / Auto-Import")
 					-- ── Diagnostics ────────────────────────────────────
 					map("n", "<leader>d", vim.diagnostic.open_float, "Float diagnostics")
 
@@ -212,7 +227,10 @@ return {
 					map("n", "]e", function()
 						vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
 					end, "Next error")
-
+                    -- Restart lsp
+                    vim.keymap.set('n', '<leader>lr', '<cmd>LspRestart<CR>', { 
+                        desc = 'Manually restart all active LSPs'
+                    })
 					-- ── Inlay hints (toggle) ────────────────────────────
 					if client:supports_method("textDocument/inlayHint") then
 						-- Enable by default on attach

@@ -28,6 +28,7 @@ return {
 				"bash-language-server",
 				"lua-language-server",
 				"clangd",
+                "tailwindcss-language-server",
 				-- Formatters
 				"stylua",
 				"prettierd",

@@ -33,5 +33,14 @@ return {
         vim.keymap.set("n", "<leader>fc", function()
             fzf.files({ cwd = vim.fn.expand("%:p:h") })
         end, { desc = "Find in current file's dir" })
+        -- Workspace diagnostics (Search all open/tracked files for errors/warnings)
+        vim.keymap.set("n", "<leader>fD", function()
+            require("fzf-lua").diagnostics_workspace()
+        end, { desc = "Fzf Workspace Diagnostics" })
+        -- Document diagnostics (Search errors/warnings in current file only)
+        vim.keymap.set("n", "<leader>fd", function()
+            require("fzf-lua").diagnostics_document()
+        end, { desc = "Fzf Document Diagnostics" })
+
     end,
 }

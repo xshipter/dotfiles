@@ -92,6 +92,7 @@ alias cls='clear'
 alias gst='git status'
 alias gaa='git add -A'
 alias gau='git add -U'
+alias gs
 
 # For configs
 alias .files='nvim ~/dotfiles'
