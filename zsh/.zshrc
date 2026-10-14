@@ -156,3 +156,5 @@ bindkey '^[[B' history-substring-search-down
 
 [[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
 
+
+export PATH="$PATH:$HOME/go/bin"

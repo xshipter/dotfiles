@@ -122,6 +122,9 @@ return {
 				},
 			})
 
+            vim.lsp.config("gopls", {})
+            vim.lsp.config("svelte", {})
+
 			-- Python ──────────────────────────────────────────────────
 			vim.lsp.config("pyright", {
 				handlers = {
@@ -177,6 +180,7 @@ return {
 				"lua_ls",
 				"ts_ls",
 				"pyright",
+                "gopls",
 				"djls",
 				"jsonls",
 				"bashls",
@@ -184,6 +188,7 @@ return {
 				"clangd",
 				"emmet_language_server",
                 "tailwindcss",
+                "svelte",
 			})
 
 			-- ── 4. LspAttach — buffer-local keymaps & features ────

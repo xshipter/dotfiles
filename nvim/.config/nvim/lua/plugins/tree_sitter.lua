@@ -16,9 +16,10 @@ return {
 			"html",
 			"htmldjango",
 			"css",
+            "svelte",
 		})
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = { "python", "go", "gomod", "bash", "zsh", "lua" },
+			pattern = { "python", "go", "gomod", "bash", "zsh", "lua", "svelte"},
 			callback = function()
 				vim.treesitter.start() -- highlighting
 				vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- folds

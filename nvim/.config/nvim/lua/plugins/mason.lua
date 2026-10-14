@@ -29,6 +29,8 @@ return {
 				"lua-language-server",
 				"clangd",
                 "tailwindcss-language-server",
+                "gopls",
+                "svelte-language-server",
 				-- Formatters
 				"stylua",
 				"prettierd",
