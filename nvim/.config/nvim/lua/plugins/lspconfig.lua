@@ -88,11 +88,15 @@ return {
 					"javascriptreact",
 					"typescriptreact",
 					"htmldjango",
+                    "gotmpl",
 				},
 
 				init_options = {
 					showExpandedAbbreviation = "always",
 					showSuggestionsAsSnippets = true,
+                    includeLanguages = {
+                        gotmpl = "html",
+                    },
 				},
 			})
 
@@ -122,7 +126,14 @@ return {
 				},
 			})
 
-            vim.lsp.config("gopls", {})
+            vim.lsp.config("gopls", {
+                filetypes = {"go", "gomod", "gowork", "gotmpl"},
+                settings = {
+                    gopls = {
+                        templateExtensions = { "tmpl", "gohtml"},
+                    },
+                },
+            })
             vim.lsp.config("svelte", {})
 
 			-- Python ──────────────────────────────────────────────────

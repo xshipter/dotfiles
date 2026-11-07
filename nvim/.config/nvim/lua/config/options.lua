@@ -67,3 +67,10 @@ vim.diagnostic.config({
         border = "rounded",
     },
 })
+
+-- Filetypes
+vim.filetype.add({
+  pattern = {
+    [".*%.tmpl"] = "gotmpl",
+  },
+})

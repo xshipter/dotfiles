@@ -1,3 +1,4 @@
+typeset -U path PATH
 # ── Environment ────────────────────────────────────────────────────────────────
 # Must be first: downstream config (MANPAGER, zstyle list-colors) depends on these.
 export EDITOR=nvim
@@ -157,4 +158,4 @@ bindkey '^[[B' history-substring-search-down
 [[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
 
 
-export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"

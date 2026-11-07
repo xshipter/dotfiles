@@ -50,6 +50,7 @@ return {
 
 				-- Go
 				go = { "goimports", "gofumpt" },
+                gotmpl = { "djlint" }
 			},
 
 			-- ── Format on save ────────────────────────────────────────
@@ -78,6 +79,8 @@ return {
 					-- -bn   : put binary ops at start of next line
 					prepend_args = { "-i", "2", "-ci", "-bn" },
 				},
+
+                djlint = { prepend_args = { "--profile=golang"} },
 
 				prettierd = {
 					-- Respect project-local .prettierrc if present (default behaviour).
